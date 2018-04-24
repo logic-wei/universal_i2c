@@ -77,7 +77,7 @@ struct UniversalI2c i2c0 = {
 ```
 
 ## use it to transifer data
-When you finished all the work above,it's simply to use i2c.
+When you finished all the work above,it's simple to use i2c.
 ```
 int main(int argc, char **argv)
 {
