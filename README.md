@@ -5,7 +5,7 @@ i2c protocol implemented by software.It's aimed at running everywhere.
 ```
 make
 ```
-![how to build](https://github.com/logic-wei/universal_i2c/raw/master/screenshots/example.png)
+![how to build](https://github.com/logic-wei/universal_i2c/raw/master/screenshots/build.png)
 
 # run example
 type the command below to show the waveform when write data to i2c device.
@@ -15,8 +15,12 @@ type the command below to show the waveform when write data to i2c device.
 ![how to run example](https://github.com/logic-wei/universal_i2c/raw/master/screenshots/example.png)
 
 # how to use
+
 ## implement adapter
+
 As same as linux driver,you have to implement some callbacks to show the library how to set gpio level and so on.
+Note:
+UNIVERSAL_I2C_INT32 is a cross platorm type.It's defined in universal_i2c.h.
 ```c
 void setScl(int level)
 {
@@ -38,7 +42,7 @@ int getSda()
 {
 	//implemented by user
 }
-void delayUs(int us)
+void delayUs(UNIVERSAL_I2C_INT32 us)
 {
 	//implemented by user	
 }
@@ -52,14 +56,18 @@ struct UniversalI2cAdapter i2c0Adapter = {
 	.delayUs = delayUs
 };
 ```
+
 ## initialize UniversalI2c structure
 argument:
 - id
+
 The identity.
 - freq
+
 The frequency of i2c clock.This is based on delayUs callback.So it's just a approximate value.
 - adapter
-some callback implemented by user
+
+some callbacks implemented by user
 ```
 struct UniversalI2c i2c0 = {
 	.id = 0,
@@ -67,8 +75,9 @@ struct UniversalI2c i2c0 = {
 	.adapter = &i2c0Adapter
 };
 ```
+
 ## use it to transifer data
-When you finished all the work before,it's simply to use i2c.
+When you finished all the work above,it's simply to use i2c.
 ```
 int main(int argc, char **argv)
 {
