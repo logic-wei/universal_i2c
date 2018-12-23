@@ -68,7 +68,7 @@ The frequency of i2c clock.This is based on delayUs callback.So it's just a appr
 - adapter
 
 some callbacks implemented by user
-```
+```c
 struct UniversalI2c i2c0 = {
 	.id = 0,
 	.freq = 1000,
@@ -78,7 +78,7 @@ struct UniversalI2c i2c0 = {
 
 ## use it to transifer data
 When you finished all the work above,it's simple to use i2c.
-```
+```c
 int main(int argc, char **argv)
 {
 	UniversalI2c_init(&i2c0);
